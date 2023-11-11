@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.domain.benefit.CustomBenefit;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
@@ -10,6 +11,7 @@ public class Controller {
     public void start() {
         outputView.printWelcome();
 
-        inputView.readDate();
+        String date = inputView.readDate();
+        CustomBenefit customBenefit = new CustomBenefit(date);
     }
 }
