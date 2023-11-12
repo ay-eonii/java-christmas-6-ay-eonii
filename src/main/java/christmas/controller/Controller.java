@@ -16,7 +16,7 @@ public class Controller {
         CustomBenefit customBenefit = new CustomBenefit(date);
 
         String menu = inputView.readMenu();
-        outputView.printPreview();
+        outputView.printPreview(date);
         Order order = new Order(menu);
         outputView.printOrder(order.toString());
 
