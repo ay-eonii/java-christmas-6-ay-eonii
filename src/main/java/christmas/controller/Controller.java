@@ -21,6 +21,7 @@ public class Controller {
         outputView.printTotalPrice(order.getTotalPrice());
 
         CustomBenefit customBenefit = new CustomBenefit(date);
+        outputView.printPresentation(customBenefit.getPresentation(order));
         customBenefit.checkBenefit(order);
         outputView.printBenefit(customBenefit.toString());
     }
