@@ -20,6 +20,7 @@ public class Controller {
         outputView.printOrder(order.toString());
 
         int totalPrice = order.getTotalPrice();
+        outputView.printTotalPrice(totalPrice);
 
 
     }
