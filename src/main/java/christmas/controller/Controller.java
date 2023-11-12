@@ -25,5 +25,6 @@ public class Controller {
         customBenefit.checkBenefit(order);
         outputView.printBenefit(customBenefit.toString());
         outputView.printTotalBenefit(customBenefit.getTotalBenefit());
+        outputView.printExpectedPay(customBenefit.getExpectedPay(order));
     }
 }
