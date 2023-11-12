@@ -16,6 +16,8 @@ public class Controller {
 
         String menu = inputView.readMenu();
         outputView.printPreview();
+        Order order = new Order(menu);
+        outputView.printOrder(order.toString());
 
 
     }

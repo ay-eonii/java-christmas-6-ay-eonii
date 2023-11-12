@@ -11,4 +11,8 @@ public class OutputView {
     public void printPreview() {
         System.out.println(PREVIEW);
     }
+
+    public void printOrder(String order) {
+        System.out.println(order);
+    }
 }
