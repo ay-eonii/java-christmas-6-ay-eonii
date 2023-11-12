@@ -24,5 +24,6 @@ public class Controller {
         outputView.printPresentation(customBenefit.getPresentation(order));
         customBenefit.checkBenefit(order);
         outputView.printBenefit(customBenefit.toString());
+        outputView.printTotalBenefit(customBenefit.getTotalBenefit());
     }
 }
