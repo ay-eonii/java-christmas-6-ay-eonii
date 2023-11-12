@@ -6,6 +6,7 @@ import java.time.DayOfWeek;
 import java.util.List;
 
 public class ChristmasDiscount extends Discount {
+    private static final String NAME = "크리스마스 디데이 할인";
     private final int date = 25;
 
     public ChristmasDiscount() {
@@ -24,5 +25,10 @@ public class ChristmasDiscount extends Discount {
 
     public int calculateBenefit(int date) {
         return (date - 1) * 100 + 1000;
+    }
+
+    @Override
+    public String toString() {
+        return NAME;
     }
 }

@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.domain.Order;
 import christmas.domain.benefit.CustomBenefit;
 import christmas.view.InputView;
 import christmas.view.OutputView;
@@ -22,5 +23,6 @@ public class Controller {
         int totalPrice = order.getTotalPrice();
         outputView.printTotalPrice(totalPrice);
         customBenefit.checkBenefit(order);
+        outputView.printBenefit(customBenefit.toString());
     }
 }

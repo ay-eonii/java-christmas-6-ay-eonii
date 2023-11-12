@@ -18,6 +18,7 @@ public class CustomBenefit {
                     new Presentation()
             )
     );
+    private static final String FORMAT = "%s: -%d원\n";
     private final int date;
     private final Map<Event, Integer> customBenefit;
 
@@ -42,4 +43,12 @@ public class CustomBenefit {
         });
     }
 
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        customBenefit.forEach((benefit, price) -> {
+            stringBuilder.append(String.format(FORMAT, benefit.toString(), price));
+        });
+        return stringBuilder.toString();
+    }
 }
