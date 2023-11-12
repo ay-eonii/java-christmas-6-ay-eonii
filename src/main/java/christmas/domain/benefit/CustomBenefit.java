@@ -2,20 +2,25 @@ package christmas.domain.benefit;
 
 import christmas.domain.Order;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 public class CustomBenefit {
     private static final int ZERO = 0;
-    private static final List<Event> benefits = new ArrayList<>(
+    private final ChristmasDiscount christmasDiscount = new ChristmasDiscount();
+    private final WeekDayDiscount weekDayDiscount = new WeekDayDiscount();
+    private final WeekEndDiscount weekEndDiscount = new WeekEndDiscount();
+    private final SpeicalDiscount speicalDiscount = new SpeicalDiscount();
+    private final Presentation presentation = new Presentation();
+    private final List<Event> benefits = new LinkedList<>(
             List.of(
-                    new ChristmasDiscount(),
-                    new WeekDayDiscount(),
-                    new WeekEndDiscount(),
-                    new SpeicalDiscount(),
-                    new Presentation()
+                    christmasDiscount,
+                    weekDayDiscount,
+                    weekEndDiscount,
+                    speicalDiscount,
+                    presentation
             )
     );
     private static final String FORMAT = "%s: -%d원\n";
@@ -34,13 +39,17 @@ public class CustomBenefit {
     }
 
     public void checkBenefit(Order order) {
-        customBenefit.keySet().forEach(benefit -> {
-            int discount = benefit.calculateBenefit(order);
-            if (benefit instanceof ChristmasDiscount) {
-                discount = ((ChristmasDiscount) benefit).calculateBenefit(date);
+        customBenefit.keySet().forEach(event -> {
+            int benefit = event.calculateBenefit(order);
+            if (event instanceof ChristmasDiscount) {
+                benefit = ((ChristmasDiscount) event).calculateBenefit(date);
             }
-            customBenefit.put(benefit, discount);
+            customBenefit.put(event, benefit);
         });
+    }
+
+    public String getPresentation(Order order) {
+        return presentation.getPresentation(order);
     }
 
     @Override

@@ -13,15 +13,14 @@ public class Controller {
         outputView.printWelcome();
 
         int date = inputView.readDate();
-        CustomBenefit customBenefit = new CustomBenefit(date);
 
         String menu = inputView.readMenu();
-        outputView.printPreview(date);
         Order order = new Order(menu);
+        outputView.printPreview(date);
         outputView.printOrder(order.toString());
+        outputView.printTotalPrice(order.getTotalPrice());
 
-        int totalPrice = order.getTotalPrice();
-        outputView.printTotalPrice(totalPrice);
+        CustomBenefit customBenefit = new CustomBenefit(date);
         customBenefit.checkBenefit(order);
         outputView.printBenefit(customBenefit.toString());
     }
