@@ -52,6 +52,10 @@ public class CustomBenefit {
         return presentation.getPresentation(order);
     }
 
+    public int getTotalBenefit() {
+        return customBenefit.values().stream().mapToInt(value -> value).sum();
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
