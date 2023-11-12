@@ -56,6 +56,10 @@ public class CustomBenefit {
         return customBenefit.values().stream().mapToInt(value -> value).sum();
     }
 
+    public int getExpectedPay(Order order) {
+        return order.getTotalPrice() - getTotalBenefit() + presentation.calculateBenefit(order);
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
