@@ -1,6 +1,8 @@
 package christmas.domain.benefit;
 
-import java.util.ArrayList;
+import christmas.domain.Menu;
+import christmas.domain.Order;
+
 import java.util.List;
 
 import static java.time.DayOfWeek.FRIDAY;
@@ -15,5 +17,10 @@ public class WeekEndDiscount extends Discount {
     @Override
     public boolean hasDate(int date) {
         return super.hasDate(date);
+    }
+
+    @Override
+    public int calculateBenefit(Order order) {
+        return order.getAmount(Menu.MAIN) * 2023;
     }
 }

@@ -1,6 +1,8 @@
 package christmas.domain.benefit;
 
-import java.util.ArrayList;
+import christmas.domain.Menu;
+import christmas.domain.Order;
+
 import java.util.List;
 
 import static java.time.DayOfWeek.*;
@@ -17,7 +19,8 @@ public class WeekDayDiscount extends Discount {
     }
 
     @Override
-    public boolean hasDate(String date) {
-        return this.dates.contains(date);
+    public int calculateBenefit(Order order) {
+        int amount = order.getAmount(Menu.DESSERT);
+        return amount * 2023;
     }
 }

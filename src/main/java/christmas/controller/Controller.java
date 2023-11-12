@@ -21,7 +21,6 @@ public class Controller {
 
         int totalPrice = order.getTotalPrice();
         outputView.printTotalPrice(totalPrice);
-
-
+        customBenefit.checkBenefit(order);
     }
 }

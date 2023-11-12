@@ -33,6 +33,13 @@ public class Order {
         return totalPrice;
     }
 
+    public int getAmount(Menu menu) {
+        if (typeOrder.containsKey(menu)) {
+            return typeOrder.get(menu);
+        }
+        return 0;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

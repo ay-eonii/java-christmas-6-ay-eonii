@@ -1,6 +1,7 @@
 package christmas.domain.benefit;
 
-import java.util.ArrayList;
+import christmas.domain.Order;
+
 import java.util.List;
 
 import static java.time.DayOfWeek.SUNDAY;
@@ -15,5 +16,10 @@ public class SpeicalDiscount extends Discount {
     @Override
     public boolean hasDate(int date) {
         return super.hasDate(date) || date == CHRISTMAS_DAY;
+    }
+
+    @Override
+    public int calculateBenefit(Order order) {
+        return 1000;
     }
 }

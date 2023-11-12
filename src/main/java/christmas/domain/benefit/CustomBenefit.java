@@ -1,5 +1,7 @@
 package christmas.domain.benefit;
 
+import christmas.domain.Order;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,4 +31,15 @@ public class CustomBenefit {
         this.date = date;
         this.customBenefit = customBenefit;
     }
+
+    public void checkBenefit(Order order) {
+        customBenefit.keySet().forEach(benefit -> {
+            int discount = benefit.calculateBenefit(order);
+            if (benefit instanceof ChristmasDiscount) {
+                discount = ((ChristmasDiscount) benefit).calculateBenefit(date);
+            }
+            customBenefit.put(benefit, discount);
+        });
+    }
+
 }
