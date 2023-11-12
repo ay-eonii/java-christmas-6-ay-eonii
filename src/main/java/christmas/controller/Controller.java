@@ -13,5 +13,8 @@ public class Controller {
 
         int date = inputView.readDate();
         CustomBenefit customBenefit = new CustomBenefit(date);
+
+        String menu = inputView.readMenu();
+
     }
 }
