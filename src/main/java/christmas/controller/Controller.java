@@ -19,6 +19,8 @@ public class Controller {
         Order order = new Order(menu);
         outputView.printOrder(order.toString());
 
+        int totalPrice = order.getTotalPrice();
+
 
     }
 }

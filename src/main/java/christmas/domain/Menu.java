@@ -22,4 +22,9 @@ public enum Menu {
                 .findFirst()
                 .orElseThrow(IllegalAccessError::new);
     }
+
+    public static int getPrice(String input) {
+        Menu menu = find(input);
+        return menu.menuAndPrice.get(input);
+    }
 }

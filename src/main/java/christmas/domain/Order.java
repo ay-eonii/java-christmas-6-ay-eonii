@@ -25,6 +25,14 @@ public class Order {
         this.typeOrder = typeOrder;
     }
 
+    public int getTotalPrice() {
+        int totalPrice = 0;
+        for (String menu : order.keySet()) {
+            totalPrice += Menu.getPrice(menu) * order.get(menu);
+        }
+        return totalPrice;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
