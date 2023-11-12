@@ -15,6 +15,8 @@ public class Controller {
         CustomBenefit customBenefit = new CustomBenefit(date);
 
         String menu = inputView.readMenu();
+        outputView.printPreview();
+
 
     }
 }
