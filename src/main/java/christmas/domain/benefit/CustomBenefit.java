@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class CustomBenefit {
     private static final int ZERO = 0;
-    private static final List<Benefit> benefits = new ArrayList<>(
+    private static final List<Event> benefits = new ArrayList<>(
             List.of(
                     new ChristmasDiscount(),
                     new WeekDayDiscount(),
@@ -16,15 +16,17 @@ public class CustomBenefit {
                     new Presentation()
             )
     );
-    private final Map<Benefit, Integer> customBenefit;
+    private final int date;
+    private final Map<Event, Integer> customBenefit;
 
-    public CustomBenefit(String date) {
-        Map<Benefit, Integer> customBenefit = new HashMap<>();
-        for (Benefit benefit : benefits) {
+    public CustomBenefit(int date) {
+        Map<Event, Integer> customBenefit = new HashMap<>();
+        for (Event benefit : benefits) {
             if (benefit.hasDate(date)) {
                 customBenefit.put(benefit, ZERO);
             }
         }
+        this.date = date;
         this.customBenefit = customBenefit;
     }
 }

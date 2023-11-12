@@ -11,7 +11,7 @@ public class Controller {
     public void start() {
         outputView.printWelcome();
 
-        String date = inputView.readDate();
+        int date = inputView.readDate();
         CustomBenefit customBenefit = new CustomBenefit(date);
     }
 }

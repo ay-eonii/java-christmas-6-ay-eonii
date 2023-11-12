@@ -3,11 +3,17 @@ package christmas.domain.benefit;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.time.DayOfWeek.SUNDAY;
+
 public class SpeicalDiscount extends Discount {
-    private final List<String> dates = new ArrayList<>(List.of("3", "10", "17", "24", "25", "31"));
+    private final int CHRISTMAS_DAY = 25;
+
+    public SpeicalDiscount() {
+        super(List.of(SUNDAY));
+    }
 
     @Override
-    public boolean hasDate(String date) {
-        return this.dates.contains(date);
+    public boolean hasDate(int date) {
+        return super.hasDate(date) || date == CHRISTMAS_DAY;
     }
 }

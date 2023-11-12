@@ -3,11 +3,17 @@ package christmas.domain.benefit;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.time.DayOfWeek.FRIDAY;
+import static java.time.DayOfWeek.SATURDAY;
+
 public class WeekEndDiscount extends Discount {
-    private final List<String> dates = new ArrayList<>(List.of("1", "2", "8", "9", "15", "16", "22", "23", "29", "30"));
+
+    public WeekEndDiscount() {
+        super(List.of(FRIDAY, SATURDAY));
+    }
 
     @Override
-    public boolean hasDate(String date) {
-        return this.dates.contains(date);
+    public boolean hasDate(int date) {
+        return super.hasDate(date);
     }
 }

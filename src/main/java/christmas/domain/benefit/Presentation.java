@@ -1,8 +1,9 @@
 package christmas.domain.benefit;
 
-public class Presentation extends Benefit {
+public class Presentation implements Event {
+
     @Override
-    boolean hasDate(String date) {
+    public boolean hasDate(int date) {
         return true;
     }
 }

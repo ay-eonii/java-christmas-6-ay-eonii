@@ -3,8 +3,18 @@ package christmas.domain.benefit;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.time.DayOfWeek.*;
+
 public class WeekDayDiscount extends Discount {
-    private final List<String> dates = new ArrayList<>(List.of("3", "4", "5", "6", "7", "10", "22", "12", "13", "14", "17", "18", "19", "20", "21", "24", "25", "26", "27", "28", "31"));
+
+    public WeekDayDiscount() {
+        super(List.of(SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY));
+    }
+
+    @Override
+    public boolean hasDate(int date) {
+        return super.hasDate(date);
+    }
 
     @Override
     public boolean hasDate(String date) {
