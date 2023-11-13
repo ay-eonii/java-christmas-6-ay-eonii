@@ -6,8 +6,8 @@ public class OutputView {
     private static final String ORDER = "<주문 메뉴>";
     private static final String TOTAL_PRICE = "<할인 전 총주문 금액>\n%d원\n";
     private static final String PRESENTATION_MENU = "<증정 메뉴>\n%s\n";
-    private static final String BENEFIT_LIST = "<혜택내역>\n%s";
-    private static final String TOTAL_BENEFIT = "<총 혜택 금액>\n%d원\n";
+    private static final String BENEFIT_LIST = "<혜택 내역>\n%s";
+    private static final String TOTAL_BENEFIT = "<총혜택 금액>\n%d원\n";
     private static final String EXPECTED_PAY = "<할인 후 예상 결제 금액>\n%d원\n";
     private static final String BADGE = "<12월 이벤트 배지>\n%s";
 
