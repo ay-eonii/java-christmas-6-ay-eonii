@@ -31,8 +31,12 @@ class CustomBenefitTest {
         );
     }
 
+    @DisplayName("증정 메뉴를 확인한다.")
     @Test
     void getPresentation() {
+        String actual = customBenefit.getPresentation(order);
+
+        assertThat(actual).isEqualTo("샴페인 1개");
     }
 
     @Test
