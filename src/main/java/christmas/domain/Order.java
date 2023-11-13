@@ -17,7 +17,7 @@ public class Order {
             String name = split[0];
             int amount = Integer.parseInt(split[1]);
 
-            Menu menu = Menu.find(name);
+            Menu menu = Menu.findType(name);
             typeOrder.put(menu, amount);
             order.put(name, amount);
         }

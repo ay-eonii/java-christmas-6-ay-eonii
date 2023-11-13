@@ -16,7 +16,7 @@ public enum Menu {
         this.menuAndPrice = map;
     }
 
-    public static Menu find(String input) {
+    public static Menu findType(String input) {
         return Arrays.stream(Menu.values())
                 .filter(menu -> menu.menuAndPrice.containsKey(input))
                 .findFirst()
@@ -24,7 +24,7 @@ public enum Menu {
     }
 
     public static int getPrice(String input) {
-        Menu menu = find(input);
+        Menu menu = findType(input);
         return menu.menuAndPrice.get(input);
     }
 }
