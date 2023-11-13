@@ -80,5 +80,8 @@ class PresentationTest {
 
     @Test
     void getName() {
+        String actual = presentation.getName();
+
+        assertThat(actual).isEqualTo("증정 이벤트");
     }
 }
