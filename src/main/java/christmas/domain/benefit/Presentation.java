@@ -7,17 +7,17 @@ public class Presentation implements Event {
     private static final String NONE = "없음";
     private static final int ZERO = 0;
     private static final int STANDARD = 120_000;
-    private static final String PRESENTATION_MENU = "샴페인 1개";
+    private static final String MENU = "샴페인 1개";
     private static final int VALUE = 25_000;
 
-    public String getPresentationMenu(Order order) {
+    public String getMenu(Order order) {
         if (hasPresentation(order)) {
-            return PRESENTATION_MENU;
+            return MENU;
         }
         return NONE;
     }
 
-    private boolean hasPresentation(Order order) {
+    boolean hasPresentation(Order order) {
         return order.getTotalPrice() >= STANDARD;
     }
 

@@ -39,7 +39,7 @@ public class CustomBenefit extends Events {
     }
 
     public String getPresentation(Order order) {
-        return getPresentation().getPresentationMenu(order);
+        return getPresentation().getMenu(order);
     }
 
     public int getTotalBenefit() {
