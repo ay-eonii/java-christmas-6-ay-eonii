@@ -20,15 +20,13 @@ class MenuTest {
         assertThat(actual.name()).isEqualTo(type);
     }
 
+    @DisplayName("메뉴 가격을 찾는다.")
     @Test
     void getPrice() {
-    }
+        String input = "양송이수프";
 
-    @Test
-    void values() {
-    }
+        int actual = Menu.getPrice(input);
 
-    @Test
-    void valueOf() {
+        assertThat(actual).isEqualTo(6_000);
     }
 }
