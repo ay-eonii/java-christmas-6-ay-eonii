@@ -15,9 +15,9 @@ class MenuTest {
             "티본스테이크:MAIN", "바비큐립:MAIN", "해산물파스타:MAIN", "크리스마스파스타:MAIN",
             "초코케이크:DESSERT", "아이스크림:DESSERT",
             "제로콜라:DRINK", "레드와인:DRINK", "샴페인:DRINK"}, delimiter = ':')
-    void findType(String input, String type) {
+    void findType(String input, Menu type) {
         Menu actual = Menu.findType(input);
-        assertThat(actual.name()).isEqualTo(type);
+        assertThat(actual).isEqualTo(type);
     }
 
     @DisplayName("메뉴 가격을 찾는다.")
