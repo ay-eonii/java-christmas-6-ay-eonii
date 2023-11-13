@@ -48,5 +48,8 @@ class SpecialDiscountTest {
 
     @Test
     void getName() {
+        String actual = specialDiscount.getName();
+
+        assertThat(actual).isEqualTo("특별 할인");
     }
 }
