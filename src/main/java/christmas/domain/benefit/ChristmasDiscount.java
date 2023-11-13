@@ -14,7 +14,10 @@ public class ChristmasDiscount extends Discount {
     }
 
     public int calculateBenefit(int date) {
-        return (date - 1) * 100 + 1000;
+        if (date <= 25) {
+            return (date - 1) * 100 + 1000;
+        }
+        return 0;
     }
 
     @Override
