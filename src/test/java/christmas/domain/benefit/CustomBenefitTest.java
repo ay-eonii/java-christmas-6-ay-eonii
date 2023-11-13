@@ -48,8 +48,13 @@ class CustomBenefitTest {
         assertThat(actual).isEqualTo(29223);
     }
 
+    @DisplayName("예상 결제 금액을 계산한다.")
     @Test
     void getExpectedPay() {
+        customBenefit.checkBenefit(order);
+        int actual = customBenefit.getExpectedPay(order);
+
+        assertThat(actual).isEqualTo(140777);
     }
 
     @Test
