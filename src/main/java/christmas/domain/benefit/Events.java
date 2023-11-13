@@ -7,7 +7,7 @@ public class Events {
     private static final String CHRISTMAS = "christmasDiscount";
     private static final String WEEKDAY = "weekDayDiscount";
     private static final String WEEKEND = "weekEndDiscount";
-    private static final String SPECIAL = "speicalDiscount";
+    private static final String SPECIAL = "specialDiscount";
     private static final String PRESENTATION = "presentation";
     private final Map<String, Event> events;
 
