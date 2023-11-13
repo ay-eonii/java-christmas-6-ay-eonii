@@ -3,39 +3,30 @@ package christmas.domain.benefit;
 import christmas.domain.Order;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CustomBenefit {
     private static final int ZERO = 0;
-    private final ChristmasDiscount christmasDiscount = new ChristmasDiscount();
-    private final WeekDayDiscount weekDayDiscount = new WeekDayDiscount();
-    private final WeekEndDiscount weekEndDiscount = new WeekEndDiscount();
-    private final SpeicalDiscount speicalDiscount = new SpeicalDiscount();
-    private final Presentation presentation = new Presentation();
-    private final List<Event> benefits = new LinkedList<>(
-            List.of(
-                    christmasDiscount,
-                    weekDayDiscount,
-                    weekEndDiscount,
-                    speicalDiscount,
-                    presentation
-            )
-    );
     private static final String FORMAT = "%s: -%d원\n";
     private final int date;
+    private final Events events;
     private final Map<Event, Integer> customBenefit;
 
     public CustomBenefit(int date) {
+        this.date = date;
+        this.events = new Events();
+        this.customBenefit = initCustomBenefit(date);
+    }
+
+    private Map<Event, Integer> initCustomBenefit(int date) {
         Map<Event, Integer> customBenefit = new HashMap<>();
-        for (Event benefit : benefits) {
-            if (benefit.hasDate(date)) {
-                customBenefit.put(benefit, ZERO);
+        for (Event event : events.getEvents().values()) {
+            if (event.hasDate(date)) {
+                customBenefit.put(event, ZERO);
             }
         }
-        this.date = date;
-        this.customBenefit = customBenefit;
+        return customBenefit;
     }
 
     public void checkBenefit(Order order) {
@@ -49,15 +40,16 @@ public class CustomBenefit {
     }
 
     public String getPresentation(Order order) {
-        return presentation.getPresentation(order);
+        return events.getPresentation().getPresentationMenu(order);
     }
 
     public int getTotalBenefit() {
-        return customBenefit.values().stream().mapToInt(value -> value).sum();
+        return customBenefit.values().stream().mapToInt(Integer::intValue).sum();
     }
 
     public int getExpectedPay(Order order) {
-        return order.getTotalPrice() - getTotalBenefit() + presentation.calculateBenefit(order);
+        int presentationBenefit = customBenefit.get(events.getPresentation());
+        return order.getTotalPrice() - getTotalBenefit() + presentationBenefit;
     }
 
     @Override
