@@ -6,27 +6,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class CustomBenefit {
+public class CustomBenefit extends Events {
     private static final int ZERO = 0;
     private static final String FORMAT = "%s: -%d원\n";
     private static final String NONE = "없음\n";
     private final int date;
-    private final Events events;
     private final Map<Event, Integer> customBenefit;
 
     public CustomBenefit(int date) {
         this.date = date;
-        this.events = new Events();
         this.customBenefit = initCustomBenefit(date);
     }
 
     private Map<Event, Integer> initCustomBenefit(int date) {
         Map<Event, Integer> customBenefit = new HashMap<>();
-        for (Event event : events.getEvents().values()) {
+        getEvents().forEach((name, event) -> {
             if (event.hasDate(date)) {
                 customBenefit.put(event, ZERO);
             }
-        }
+        });
         return customBenefit;
     }
 
@@ -41,7 +39,7 @@ public class CustomBenefit {
     }
 
     public String getPresentation(Order order) {
-        return events.getPresentation().getPresentationMenu(order);
+        return getPresentation().getPresentationMenu(order);
     }
 
     public int getTotalBenefit() {
@@ -49,7 +47,7 @@ public class CustomBenefit {
     }
 
     public int getExpectedPay(Order order) {
-        int presentationBenefit = customBenefit.get(events.getPresentation());
+        int presentationBenefit = customBenefit.get(getPresentation());
         return order.getTotalPrice() - getTotalBenefit() + presentationBenefit;
     }
 
