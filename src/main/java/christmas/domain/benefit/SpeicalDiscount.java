@@ -25,7 +25,7 @@ public class SpeicalDiscount extends Discount {
     }
 
     @Override
-    public String toString() {
+    public String getName() {
         return NAME;
     }
 }

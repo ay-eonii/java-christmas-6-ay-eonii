@@ -26,7 +26,7 @@ public class WeekEndDiscount extends Discount {
     }
 
     @Override
-    public String toString() {
+    public String getName() {
         return NAME;
     }
 }

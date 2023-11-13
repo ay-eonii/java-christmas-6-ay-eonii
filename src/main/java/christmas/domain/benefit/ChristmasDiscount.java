@@ -13,6 +13,10 @@ public class ChristmasDiscount extends Discount {
         super(List.of(DayOfWeek.values()));
     }
 
+    public int calculateBenefit(int date) {
+        return (date - 1) * 100 + 1000;
+    }
+
     @Override
     public boolean hasDate(int date) {
         return super.hasDate(date) && date <= this.date;
@@ -23,12 +27,8 @@ public class ChristmasDiscount extends Discount {
         return 0;
     }
 
-    public int calculateBenefit(int date) {
-        return (date - 1) * 100 + 1000;
-    }
-
     @Override
-    public String toString() {
+    public String getName() {
         return NAME;
     }
 }

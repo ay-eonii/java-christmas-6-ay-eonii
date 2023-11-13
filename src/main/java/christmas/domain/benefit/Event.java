@@ -6,4 +6,6 @@ public interface Event {
     boolean hasDate(int date);
 
     int calculateBenefit(Order order);
+
+    String getName();
 }

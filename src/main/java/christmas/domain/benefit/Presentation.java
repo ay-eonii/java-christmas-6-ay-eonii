@@ -12,6 +12,7 @@ public class Presentation implements Event {
         return true;
     }
 
+    @Override
     public int calculateBenefit(Order order) {
         if (hasPresentation(order)) {
             return 25_000;
@@ -31,7 +32,7 @@ public class Presentation implements Event {
     }
 
     @Override
-    public String toString() {
+    public String getName() {
         return NAME;
     }
 }

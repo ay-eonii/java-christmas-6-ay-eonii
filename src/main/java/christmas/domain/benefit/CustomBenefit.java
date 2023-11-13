@@ -62,10 +62,11 @@ public class CustomBenefit {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        customBenefit.forEach((benefit, price) -> {
-            stringBuilder.append(String.format(FORMAT, benefit.toString(), price));
-        });
-        return stringBuilder.toString();
+
+        return customBenefit.entrySet()
+                .stream()
+                .filter(benefit -> benefit.getValue() != 0)
+                .map(benefit -> String.format(FORMAT, benefit.getKey().getName(), benefit.getValue()))
+                .collect(Collectors.joining());
     }
 }
