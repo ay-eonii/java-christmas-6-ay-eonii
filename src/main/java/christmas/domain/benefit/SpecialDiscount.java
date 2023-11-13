@@ -6,11 +6,11 @@ import java.util.List;
 
 import static java.time.DayOfWeek.SUNDAY;
 
-public class SpeicalDiscount extends Discount {
+public class SpecialDiscount extends Discount {
     private static final String NAME = "특별 할인";
     private final int CHRISTMAS_DAY = 25;
 
-    public SpeicalDiscount() {
+    public SpecialDiscount() {
         super(List.of(SUNDAY));
     }
 

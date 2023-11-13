@@ -20,7 +20,7 @@ public class Events {
                 CHRISTMAS, new ChristmasDiscount(),
                 WEEKDAY, new WeekDayDiscount(),
                 WEEKEND, new WeekEndDiscount(),
-                SPECIAL, new SpeicalDiscount(),
+                SPECIAL, new SpecialDiscount(),
                 PRESENTATION, new Presentation()
         ));
     }
