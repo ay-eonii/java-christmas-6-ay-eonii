@@ -1,12 +1,17 @@
 package christmas.domain.benefit;
 
+import christmas.domain.Menu;
+import christmas.domain.Order;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class WeekEndDiscountTest {
 
@@ -35,8 +40,17 @@ class WeekEndDiscountTest {
         assertThat(actual).isFalse();
     }
 
-    @Test
-    void calculateBenefit() {
+    @DisplayName("주말 할인 금액을 계산한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"1:2023", "2:4046", "1061534:2147483282"}, delimiter = ':')
+    void calculateBenefit(int amount, int benefit) {
+        Order order = mock(Order.class);
+        Menu main = Menu.MAIN;
+
+        when(order.getAmount(main)).thenReturn(amount);
+        int actual = weekEndDiscount.calculateBenefit(order);
+
+        assertThat(actual).isEqualTo(benefit);
     }
 
     @Test
