@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 public class CustomBenefit {
     private static final int ZERO = 0;
     private static final String FORMAT = "%s: -%d원\n";
+    private static final String NONE = "없음\n";
     private final int date;
     private final Events events;
     private final Map<Event, Integer> customBenefit;
@@ -54,7 +55,9 @@ public class CustomBenefit {
 
     @Override
     public String toString() {
-
+        if (getTotalBenefit() == ZERO) {
+            return NONE;
+        }
         return customBenefit.entrySet()
                 .stream()
                 .filter(benefit -> benefit.getValue() != 0)
