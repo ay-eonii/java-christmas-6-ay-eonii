@@ -25,7 +25,7 @@ class OrderTest {
         assertThat(actual).isEqualTo(145_000);
     }
 
-    @DisplayName("타입별 주문 수량 계산")
+    @DisplayName("타입별 주문 수량을 계산한다.")
     @ParameterizedTest
     @CsvSource(value = {"MAIN:2", "DRINK:1", "DESSERT:1"}, delimiter = ':')
     void getAmount(Menu menu, int amount) {
@@ -34,7 +34,15 @@ class OrderTest {
         assertThat(actual).isEqualTo(amount);
     }
 
+    @DisplayName("주문 내역을 출력한다.")
     @Test
     void testToString() {
+        String result = order.toString();
+
+        assertThat(result).contains(
+                "해산물파스타 2개",
+                "레드와인 1개",
+                "초코케이크 1개"
+        );
     }
 }
