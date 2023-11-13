@@ -55,5 +55,8 @@ class WeekDayDiscountTest {
 
     @Test
     void getName() {
+        String actual = weekDayDiscount.getName();
+
+        assertThat(actual).isEqualTo("평일 할인");
     }
 }
