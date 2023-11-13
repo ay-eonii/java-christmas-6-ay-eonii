@@ -43,14 +43,14 @@ class WeekDayDiscountTest {
     @DisplayName("평일 할인 금액을 계산한다.")
     @ParameterizedTest
     @CsvSource(value = {"1:2023", "2:4046", "1061534:2147483282"}, delimiter = ':')
-    void calculateBenefit() {
+    void calculateBenefit(int amount, int benefit) {
         Order order = mock(Order.class);
         Menu dessert = Menu.DESSERT;
 
-        when(order.getAmount(dessert)).thenReturn(2);
+        when(order.getAmount(dessert)).thenReturn(amount);
         int actual = weekDayDiscount.calculateBenefit(order);
 
-        assertThat(actual).isEqualTo(4046);
+        assertThat(actual).isEqualTo(benefit);
     }
 
     @Test
