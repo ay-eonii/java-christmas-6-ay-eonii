@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.domain.Badge;
 import christmas.domain.Order;
 import christmas.domain.benefit.CustomBenefit;
 import christmas.view.InputView;
@@ -26,5 +27,6 @@ public class Controller {
         outputView.printBenefit(customBenefit.toString());
         outputView.printTotalBenefit(customBenefit.getTotalBenefit());
         outputView.printExpectedPay(customBenefit.getExpectedPay(order));
+        outputView.printBadge(Badge.determineBadge(customBenefit));
     }
 }
