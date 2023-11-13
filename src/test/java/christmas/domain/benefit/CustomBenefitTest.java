@@ -39,8 +39,13 @@ class CustomBenefitTest {
         assertThat(actual).isEqualTo("샴페인 1개");
     }
 
+    @DisplayName("총혜택 금액을 계산한다.")
     @Test
     void getTotalBenefit() {
+        customBenefit.checkBenefit(order);
+        int actual = customBenefit.getTotalBenefit();
+
+        assertThat(actual).isEqualTo(29223);
     }
 
     @Test
