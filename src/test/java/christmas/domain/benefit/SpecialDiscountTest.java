@@ -1,5 +1,6 @@
 package christmas.domain.benefit;
 
+import christmas.domain.Order;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
 class SpecialDiscountTest {
 
@@ -35,8 +37,13 @@ class SpecialDiscountTest {
         assertThat(actual).isFalse();
     }
 
+    @DisplayName("특별 할인 혜택은 1000원이다.")
     @Test
     void calculateBenefit() {
+        Order order = mock(Order.class);
+        int actual = specialDiscount.calculateBenefit(order);
+
+        assertThat(actual).isEqualTo(1000);
     }
 
     @Test
