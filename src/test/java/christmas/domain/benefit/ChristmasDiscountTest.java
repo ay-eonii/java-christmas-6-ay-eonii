@@ -47,5 +47,8 @@ class ChristmasDiscountTest {
 
     @Test
     void getName() {
+        String actual = christmasDiscount.getName();
+
+        assertThat(actual).isEqualTo("크리스마스 디데이 할인");
     }
 }
