@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -44,9 +45,15 @@ class PresentationTest {
         Assertions.assertEquals(actual, "없음");
     }
 
-    @Test
-    void hasDate() {
+    @DisplayName("12월 내내 증정 이벤트를 진행한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 15, 25, 31})
+    void hasDate(int date) {
+        boolean actual = presentation.hasDate(date);
+
+        assertThat(actual).isTrue();
     }
+
 
     @Test
     void calculateBenefit() {
