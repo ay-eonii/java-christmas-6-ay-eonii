@@ -57,7 +57,11 @@ class CustomBenefitTest {
         assertThat(actual).isEqualTo(140777);
     }
 
+    @DisplayName("혜택 내역을 출력한다.")
     @Test
     void testToString() {
+        String result = customBenefit.toString();
+
+        assertThat(result).isEqualTo("없음\n");
     }
 }
