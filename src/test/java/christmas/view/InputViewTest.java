@@ -52,6 +52,16 @@ class InputViewTest extends NsTest {
         });
     }
 
+    @DisplayName("음료만 시키는 경우 다시 입력받는다.")
+    @ParameterizedTest
+    @CsvSource(value = {"1:제로콜라-1", "1:레드와인-2", "1:샴페인-3"}, delimiter = ':')
+    void readOnlyDrinkMenu(String date, String menu) {
+        assertSimpleTest(() -> {
+            runException(date, menu);
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

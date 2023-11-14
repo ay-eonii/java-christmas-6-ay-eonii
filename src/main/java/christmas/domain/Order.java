@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import christmas.exception.CustomInvalidMenuException;
+
 import java.util.Map;
 
 public class Order {
@@ -7,8 +9,23 @@ public class Order {
     private Map<String, Integer> order;
 
     public Order(Map<String, Integer> order) {
+        validateOrder(order);
         order.keySet().forEach(Menu::findType);
         this.order = order;
+    }
+
+    private void validateOrder(Map<String, Integer> order) {
+        long drinkCount = getDrinkCount(order);
+        if (drinkCount == order.size()) {
+            throw new CustomInvalidMenuException();
+        }
+    }
+
+    private long getDrinkCount(Map<String, Integer> order) {
+        return order.keySet().stream()
+                .map(Menu::findType)
+                .filter(menu -> menu == Menu.DRINK)
+                .count();
     }
 
     public int getTotalPrice() {
