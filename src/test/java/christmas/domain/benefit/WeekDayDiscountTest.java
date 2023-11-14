@@ -1,5 +1,6 @@
 package christmas.domain.benefit;
 
+import christmas.domain.Date;
 import christmas.domain.Menu;
 import christmas.domain.Order;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,8 +25,9 @@ class WeekDayDiscountTest {
 
     @DisplayName("일,월,화,수,목에 평일할인을 진행한다.")
     @ParameterizedTest
-    @ValueSource(ints = {3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 17, 18, 19, 20, 21, 24, 25, 26, 27, 28, 31})
-    void hasDate(int date) {
+    @ValueSource(strings = {"3", "4", "5", "6", "7", "10", "11", "12", "13", "14", "17", "18", "19", "20", "21", "24", "25", "26", "27", "28", "31"})
+    void hasDate(String input) {
+        Date date = Date.of(input);
         boolean actual = weekDayDiscount.hasDate(date);
 
         assertThat(actual).isTrue();
@@ -33,8 +35,9 @@ class WeekDayDiscountTest {
 
     @DisplayName("금,토에 평일할인을 진행하지 않는다.")
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 8, 9, 15, 16, 22, 23, 29, 30})
-    void hasNotDate(int date) {
+    @ValueSource(strings = {"1", "2", "8", "9", "15", "16", "22", "23", "29", "30"})
+    void hasNotDate(String input) {
+        Date date = Date.of(input);
         boolean actual = weekDayDiscount.hasDate(date);
 
         assertThat(actual).isFalse();

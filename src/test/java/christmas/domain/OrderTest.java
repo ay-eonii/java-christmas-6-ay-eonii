@@ -14,7 +14,7 @@ class OrderTest {
 
     @BeforeEach
     void setUp() {
-        order = new Order("해산물파스타-2,레드와인-1,초코케이크-1");
+        order = new Order("해산물파스타-2,레드와인-1,초코케이크-1", Date.of("3"));
     }
 
     @DisplayName("할인 전 총주문 금액을 계산한다.")

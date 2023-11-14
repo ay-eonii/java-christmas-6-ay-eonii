@@ -1,5 +1,6 @@
 package christmas.domain.benefit;
 
+import christmas.domain.Date;
 import christmas.domain.Order;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -13,8 +14,9 @@ class CustomBenefitTest {
 
     @BeforeEach
     void setUp() {
-        customBenefit = new CustomBenefit(3);
-        order = new Order("해산물파스타-2,레드와인-1,초코케이크-1");
+        Date date = Date.of("3");
+        customBenefit = new CustomBenefit(date);
+        order = new Order("해산물파스타-2,레드와인-1,초코케이크-1", date);
     }
 
     @DisplayName("혜택을 계산한다.")

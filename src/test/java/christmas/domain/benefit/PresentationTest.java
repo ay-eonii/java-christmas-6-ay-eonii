@@ -1,5 +1,6 @@
 package christmas.domain.benefit;
 
+import christmas.domain.Date;
 import christmas.domain.Order;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,8 +48,9 @@ class PresentationTest {
 
     @DisplayName("12월 내내 증정 이벤트를 진행한다.")
     @ParameterizedTest
-    @ValueSource(ints = {1, 15, 25, 31})
-    void hasDate(int date) {
+    @ValueSource(strings = {"1", "15", "25", "31"})
+    void hasDate(String input) {
+        Date date = Date.of(input);
         boolean actual = presentation.hasDate(date);
 
         assertThat(actual).isTrue();
