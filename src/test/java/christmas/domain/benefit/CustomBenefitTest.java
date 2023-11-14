@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class CustomBenefitTest {
     CustomBenefit customBenefit;
@@ -34,6 +36,18 @@ class CustomBenefitTest {
                 "증정 이벤트: -25000원",
                 "특별 할인: -1000원"
         );
+    }
+
+    @DisplayName("총 주문 금액이 10,000원 미만라면 혜택이 적용되지 않는다.")
+    @Test
+    void checkBenefitWithUnderMinPrice() {
+        Order order = mock(Order.class);
+        when(order.getTotalPrice()).thenReturn(9999);
+
+        customBenefit.checkBenefit(order);
+
+        String result = customBenefit.toString();
+        assertThat(result).contains("없음");
     }
 
     @DisplayName("증정 메뉴를 확인한다.")
