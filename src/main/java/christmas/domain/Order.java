@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import christmas.domain.benefit.Presentation;
 import christmas.exception.CustomInvalidMenuException;
 
 import java.util.Map;
@@ -49,6 +50,10 @@ public class Order {
                 .filter(food -> Menu.findType(food) == menu)
                 .mapToInt(amount -> order.get(amount))
                 .sum();
+    }
+
+    public boolean hasChampagne() {
+        return order.containsKey(Presentation.MENU);
     }
 
     @Override

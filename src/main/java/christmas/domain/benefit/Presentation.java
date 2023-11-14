@@ -10,7 +10,8 @@ public class Presentation extends Discount {
     private static final String NONE = "없음";
     private static final int ZERO = 0;
     private static final int STANDARD = 120_000;
-    private static final String MENU = "샴페인 1개";
+    public static final String MENU = "샴페인";
+    private static final String AMOUNT = "1개";
     private static final int VALUE = 25_000;
 
     protected Presentation() {
@@ -19,7 +20,7 @@ public class Presentation extends Discount {
 
     public String getMenu(Order order) {
         if (hasPresentation(order)) {
-            return MENU;
+            return String.join(" ", MENU, AMOUNT);
         }
         return NONE;
     }
