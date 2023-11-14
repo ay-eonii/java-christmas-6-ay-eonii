@@ -1,5 +1,6 @@
 package christmas.domain.benefit;
 
+import christmas.domain.Date;
 import christmas.domain.Order;
 
 import java.util.HashMap;
@@ -10,15 +11,13 @@ public class CustomBenefit extends Events {
     private static final int ZERO = 0;
     private static final String FORMAT = "%s: -%d원\n";
     private static final String NONE = "없음\n";
-    private final int date;
     private final Map<Event, Integer> customBenefit;
 
-    public CustomBenefit(int date) {
-        this.date = date;
+    public CustomBenefit(Date date) {
         this.customBenefit = initCustomBenefit(date);
     }
 
-    private Map<Event, Integer> initCustomBenefit(int date) {
+    private Map<Event, Integer> initCustomBenefit(Date date) {
         Map<Event, Integer> customBenefit = new HashMap<>();
         getEvents().forEach((name, event) -> {
             if (event.hasDate(date)) {
@@ -31,9 +30,6 @@ public class CustomBenefit extends Events {
     public void checkBenefit(Order order) {
         customBenefit.keySet().forEach(event -> {
             int benefit = event.calculateBenefit(order);
-            if (event instanceof ChristmasDiscount) {
-                benefit = ((ChristmasDiscount) event).calculateBenefit(date);
-            }
             customBenefit.put(event, benefit);
         });
     }

@@ -1,5 +1,6 @@
 package christmas.domain.benefit;
 
+import christmas.domain.Date;
 import christmas.domain.Menu;
 import christmas.domain.Order;
 
@@ -16,7 +17,7 @@ public class WeekEndDiscount extends Discount {
     }
 
     @Override
-    public boolean hasDate(int date) {
+    public boolean hasDate(Date date) {
         return super.hasDate(date);
     }
 

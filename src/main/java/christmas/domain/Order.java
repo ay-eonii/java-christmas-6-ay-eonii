@@ -6,8 +6,9 @@ import java.util.Map;
 public class Order {
     private static final String FORMAT = "%s %d개\n";
     private Map<String, Integer> order;
+    private Date date;
 
-    public Order(String input) {
+    public Order(String input, Date date) {
         Map<String, Integer> order = new HashMap<>();
         String[] bills = input.split(",");
 
@@ -17,6 +18,7 @@ public class Order {
             int amount = Integer.parseInt(split[1]);
             order.put(name, amount);
         }
+        this.date = date;
         this.order = order;
     }
 
@@ -33,6 +35,10 @@ public class Order {
                 .filter(food -> Menu.findType(food) == menu)
                 .mapToInt(amount -> order.get(amount))
                 .sum();
+    }
+
+    public Date getDate() {
+        return date;
     }
 
     @Override

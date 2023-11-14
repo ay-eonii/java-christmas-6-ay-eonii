@@ -1,6 +1,7 @@
 package christmas.controller;
 
 import christmas.domain.Badge;
+import christmas.domain.Date;
 import christmas.domain.Order;
 import christmas.domain.benefit.CustomBenefit;
 import christmas.view.InputView;
@@ -13,10 +14,10 @@ public class Controller {
     public void start() {
         outputView.printWelcome();
 
-        int date = inputView.readDate();
+        Date date = inputView.readDate();
 
         String menu = inputView.readMenu();
-        Order order = new Order(menu);
+        Order order = new Order(menu, date);
         outputView.printPreview(date);
         outputView.printOrder(order.toString());
         outputView.printTotalPrice(order.getTotalPrice());

@@ -1,10 +1,9 @@
 package christmas.domain.benefit;
 
+import christmas.domain.Date;
 import christmas.domain.Order;
 
 import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 public abstract class Discount implements Event {
@@ -14,9 +13,8 @@ public abstract class Discount implements Event {
         this.day = day;
     }
 
-    public boolean hasDate(int date) {
-        LocalDate localDate = LocalDate.of(2023, Month.DECEMBER, date);
-        return day.contains(localDate.getDayOfWeek());
+    public boolean hasDate(Date date) {
+        return day.contains(date.getDayOfWeek());
     }
 
     public abstract int calculateBenefit(Order order);

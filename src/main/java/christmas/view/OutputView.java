@@ -1,8 +1,10 @@
 package christmas.view;
 
+import christmas.domain.Date;
+
 public class OutputView {
     private static final String WELCOME = "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.";
-    private static final String PREVIEW = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n";
+    private static final String PREVIEW = "12월 %s일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n";
     private static final String ORDER = "<주문 메뉴>";
     private static final String TOTAL_PRICE = "<할인 전 총주문 금액>\n%d원\n";
     private static final String PRESENTATION_MENU = "<증정 메뉴>\n%s\n";
@@ -15,8 +17,8 @@ public class OutputView {
         System.out.println(WELCOME);
     }
 
-    public void printPreview(int date) {
-        System.out.println(String.format(PREVIEW, date));
+    public void printPreview(Date date) {
+        System.out.println(String.format(PREVIEW, date.toString()));
     }
 
     public void printOrder(String order) {
