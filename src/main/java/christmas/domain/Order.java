@@ -1,6 +1,5 @@
 package christmas.domain;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class Order {
@@ -8,16 +7,8 @@ public class Order {
     private Map<String, Integer> order;
     private Date date;
 
-    public Order(String input, Date date) {
-        Map<String, Integer> order = new HashMap<>();
-        String[] bills = input.split(",");
-
-        for (String bill : bills) {
-            String[] split = bill.split("-");
-            String name = split[0];
-            int amount = Integer.parseInt(split[1]);
-            order.put(name, amount);
-        }
+    public Order(Map<String, Integer> order, Date date) {
+        order.keySet().forEach(Menu::findType);
         this.date = date;
         this.order = order;
     }

@@ -8,21 +8,19 @@ import christmas.view.InputView;
 import christmas.view.OutputView;
 
 public class Controller {
-    private OutputView outputView = new OutputView();
-    private InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
 
     public void start() {
         outputView.printWelcome();
 
         Date date = inputView.readDate();
-
-        String menu = inputView.readMenu();
-        Order order = new Order(menu, date);
+        Order order = inputView.readMenu(date);
         outputView.printPreview(date);
         outputView.printOrder(order.toString());
         outputView.printTotalPrice(order.getTotalPrice());
 
-        CustomBenefit customBenefit = new CustomBenefit(date);
+        final CustomBenefit customBenefit = new CustomBenefit(date);
         outputView.printPresentation(customBenefit.getPresentation(order));
         customBenefit.checkBenefit(order);
         outputView.printBenefit(customBenefit.toString());

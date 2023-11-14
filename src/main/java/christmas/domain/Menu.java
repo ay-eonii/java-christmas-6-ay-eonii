@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import christmas.exception.CustomInvalidMenuException;
+
 import java.util.Arrays;
 import java.util.Map;
 
@@ -20,7 +22,7 @@ public enum Menu {
         return Arrays.stream(Menu.values())
                 .filter(menu -> menu.menuAndPrice.containsKey(input))
                 .findFirst()
-                .orElseThrow(IllegalAccessError::new);
+                .orElseThrow(CustomInvalidMenuException::new);
     }
 
     public static int getPrice(String input) {

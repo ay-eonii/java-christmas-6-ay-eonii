@@ -2,6 +2,11 @@ package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.Date;
+import christmas.domain.Order;
+import christmas.exception.CustomInvalidMenuException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class InputView {
     private static final String INPUT_DATE = "12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)";
@@ -14,16 +19,53 @@ public class InputView {
 
     private Date readDateByUser() {
         try {
-            String withoutSpace = Console.readLine().replaceAll("\\s+", "");
-            return Date.of(withoutSpace);
+            return Date.of(getWithoutSpace());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readDateByUser();
         }
     }
 
-    public String readMenu() {
+    public Order readMenu(Date date) {
         System.out.println(INPUT_MENU);
-        return Console.readLine();
+        return readMenuByUser(date);
+    }
+
+    private Order readMenuByUser(Date date) {
+        String[] orders = getWithoutSpace().split(",");
+        try {
+            Map<String, Integer> menus = createMenuMap(orders);
+            validateDuplication(orders, menus);
+            return new Order(menus, date);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMenuByUser(date);
+        }
+    }
+
+    private Map<String, Integer> createMenuMap(String[] orders) {
+        Map<String, Integer> menu = new HashMap<>();
+        for (String order : orders) {
+            validateFormat(order);
+            String[] splitWithHyphen = order.split("-");
+            menu.put(splitWithHyphen[0], Integer.parseInt(splitWithHyphen[1]));
+        }
+        return menu;
+    }
+
+    private void validateFormat(String order) {
+        if (!order.matches("^\\D+-[1-9]\\d*$")) {
+            throw new CustomInvalidMenuException();
+        }
+    }
+
+    private void validateDuplication(String[] split, Map<String, Integer> menu) {
+        if (menu.size() != split.length) {
+            throw new CustomInvalidMenuException();
+        }
+    }
+
+    private String getWithoutSpace() {
+        return Console.readLine().replaceAll("\\s+", "");
     }
 }

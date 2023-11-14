@@ -6,6 +6,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CustomBenefitTest {
@@ -16,7 +19,8 @@ class CustomBenefitTest {
     void setUp() {
         Date date = Date.of("3");
         customBenefit = new CustomBenefit(date);
-        order = new Order("해산물파스타-2,레드와인-1,초코케이크-1", date);
+        Map<String, Integer> menus = new HashMap<>(Map.of("해산물파스타", 2, "레드와인", 1, "초코케이크", 1));
+        order = new Order(menus, date);
     }
 
     @DisplayName("혜택을 계산한다.")
