@@ -1,7 +1,5 @@
 package christmas.domain;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import christmas.Application;
 import christmas.exception.CustomInvalidDateException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-class DateTest extends NsTest {
+class DateTest {
 
     @DisplayName("유효하지 않은 날짜의 경우 예외가 발생한다.")
     @ParameterizedTest
@@ -42,24 +40,22 @@ class DateTest extends NsTest {
         assertThat(actual).isFalse();
     }
 
+    @DisplayName("크리스마스인지 확인한다.")
     @Test
     void isChristmas() {
+        Date date = Date.of("25");
+        boolean actual = date.isChristmas();
+
+        assertThat(actual).isTrue();
     }
 
-    @Test
-    void getDate() {
-    }
+    @DisplayName("크리스마스가 아닌지 확인한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"26", "31"})
+    void isNotChristmas(String input) {
+        Date date = Date.of(input);
+        boolean actual = date.isChristmas();
 
-    @Test
-    void getDayOfWeek() {
-    }
-
-    @Test
-    void testToString() {
-    }
-
-    @Override
-    protected void runMain() {
-        Application.main(new String[]{});
+        assertThat(actual).isFalse();
     }
 }
