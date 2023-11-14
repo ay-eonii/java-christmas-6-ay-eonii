@@ -62,6 +62,16 @@ class InputViewTest extends NsTest {
         });
     }
 
+    @DisplayName("20개 이상 주문하는 경우 다시 입력받는다.")
+    @ParameterizedTest
+    @CsvSource(value = {"1:티본스테이크-21"}, delimiter = ':')
+    void readOverMaxOrder(String date, String menu) {
+        assertSimpleTest(() -> {
+            runException(date, menu);
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

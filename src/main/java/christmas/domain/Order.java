@@ -5,12 +5,12 @@ import christmas.exception.CustomInvalidMenuException;
 import java.util.Map;
 
 public class Order {
+    private static final int MAX_ORDER = 20;
     private static final String FORMAT = "%s %d개\n";
     private Map<String, Integer> order;
 
     public Order(Map<String, Integer> order) {
         validateOrder(order);
-        order.keySet().forEach(Menu::findType);
         this.order = order;
     }
 
@@ -19,6 +19,7 @@ public class Order {
         if (drinkCount == order.size()) {
             throw new CustomInvalidMenuException();
         }
+        validateMax(order);
     }
 
     private long getDrinkCount(Map<String, Integer> order) {
@@ -26,6 +27,13 @@ public class Order {
                 .map(Menu::findType)
                 .filter(menu -> menu == Menu.DRINK)
                 .count();
+    }
+
+    private void validateMax(Map<String, Integer> order) {
+        int orderCount = order.values().stream().mapToInt(Integer::intValue).sum();
+        if (orderCount > MAX_ORDER) {
+            throw new CustomInvalidMenuException();
+        }
     }
 
     public int getTotalPrice() {
