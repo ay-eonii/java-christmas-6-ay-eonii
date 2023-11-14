@@ -31,10 +31,10 @@ class CustomBenefitTest {
 
         String result = customBenefit.toString();
         assertThat(result).contains(
-                "평일 할인: -2023원",
-                "크리스마스 디데이 할인: -1200원",
-                "증정 이벤트: -25000원",
-                "특별 할인: -1000원"
+                "평일 할인: -2,023원",
+                "크리스마스 디데이 할인: -1,200원",
+                "증정 이벤트: -25,000원",
+                "특별 할인: -1,000원"
         );
     }
 

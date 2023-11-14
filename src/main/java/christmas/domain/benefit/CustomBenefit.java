@@ -3,6 +3,7 @@ package christmas.domain.benefit;
 import christmas.domain.Date;
 import christmas.domain.Order;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -10,10 +11,11 @@ import java.util.stream.Collectors;
 public class CustomBenefit extends Events {
     private static final int MIN_PRICE = 10_000;
     private static final int ZERO = 0;
-    private static final String FORMAT = "%s: -%d원\n";
+    private static final String FORMAT = "%s: -%s원\n";
     private static final String NONE = "없음\n";
     private final Map<Event, Integer> customBenefit;
     private final Date date;
+    private final DecimalFormat decimalFormat = new DecimalFormat("#,##0");
 
     public CustomBenefit(Date date) {
         this.date = date;
@@ -64,7 +66,7 @@ public class CustomBenefit extends Events {
         return customBenefit.entrySet()
                 .stream()
                 .filter(benefit -> benefit.getValue() != 0)
-                .map(benefit -> String.format(FORMAT, benefit.getKey().getName(), benefit.getValue()))
+                .map(benefit -> String.format(FORMAT, benefit.getKey().getName(), decimalFormat.format(benefit.getValue())))
                 .collect(Collectors.joining());
     }
 }
