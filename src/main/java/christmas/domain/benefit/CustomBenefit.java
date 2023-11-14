@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class CustomBenefit extends Events {
+    private static final int MIN_PRICE = 10_000;
     private static final int ZERO = 0;
     private static final String FORMAT = "%s: -%d원\n";
     private static final String NONE = "없음\n";
@@ -30,6 +31,9 @@ public class CustomBenefit extends Events {
     }
 
     public void checkBenefit(Order order) {
+        if (order.getTotalPrice() < MIN_PRICE) {
+            return;
+        }
         customBenefit.keySet().forEach(event -> {
             int benefit = event.calculateBenefit(order);
             if (event instanceof ChristmasDiscount) {
