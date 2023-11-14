@@ -17,10 +17,9 @@ class CustomBenefitTest {
 
     @BeforeEach
     void setUp() {
-        Date date = Date.of("3");
-        customBenefit = new CustomBenefit(date);
+        customBenefit = new CustomBenefit(Date.of("3"));
         Map<String, Integer> menus = new HashMap<>(Map.of("해산물파스타", 2, "레드와인", 1, "초코케이크", 1));
-        order = new Order(menus, date);
+        order = new Order(menus);
     }
 
     @DisplayName("혜택을 계산한다.")

@@ -12,8 +12,10 @@ public class CustomBenefit extends Events {
     private static final String FORMAT = "%s: -%d원\n";
     private static final String NONE = "없음\n";
     private final Map<Event, Integer> customBenefit;
+    private final Date date;
 
     public CustomBenefit(Date date) {
+        this.date = date;
         this.customBenefit = initCustomBenefit(date);
     }
 
@@ -30,6 +32,9 @@ public class CustomBenefit extends Events {
     public void checkBenefit(Order order) {
         customBenefit.keySet().forEach(event -> {
             int benefit = event.calculateBenefit(order);
+            if (event instanceof ChristmasDiscount) {
+                benefit = ((ChristmasDiscount) event).calculateBenefit(date);
+            }
             customBenefit.put(event, benefit);
         });
     }

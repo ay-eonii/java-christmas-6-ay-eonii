@@ -26,20 +26,20 @@ public class InputView {
         }
     }
 
-    public Order readMenu(Date date) {
+    public Order readMenu() {
         System.out.println(INPUT_MENU);
-        return readMenuByUser(date);
+        return readMenuByUser();
     }
 
-    private Order readMenuByUser(Date date) {
+    private Order readMenuByUser() {
         String[] orders = getWithoutSpace().split(",");
         try {
             Map<String, Integer> menus = createMenuMap(orders);
             validateDuplication(orders, menus);
-            return new Order(menus, date);
+            return new Order(menus);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return readMenuByUser(date);
+            return readMenuByUser();
         }
     }
 

@@ -15,7 +15,7 @@ public class Controller {
         outputView.printWelcome();
 
         Date date = inputView.readDate();
-        Order order = inputView.readMenu(date);
+        Order order = inputView.readMenu();
         outputView.printPreview(date);
         outputView.printOrder(order.toString());
         outputView.printTotalPrice(order.getTotalPrice());

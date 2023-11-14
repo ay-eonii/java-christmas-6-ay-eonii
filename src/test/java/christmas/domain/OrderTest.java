@@ -18,7 +18,7 @@ class OrderTest {
     @BeforeEach
     void setUp() {
         Map<String, Integer> menus = new HashMap<>(Map.of("해산물파스타", 2, "레드와인", 1, "초코케이크", 1));
-        order = new Order(menus, Date.of("3"));
+        order = new Order(menus);
     }
 
     @DisplayName("할인 전 총주문 금액을 계산한다.")

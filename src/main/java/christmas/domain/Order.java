@@ -5,11 +5,9 @@ import java.util.Map;
 public class Order {
     private static final String FORMAT = "%s %d개\n";
     private Map<String, Integer> order;
-    private Date date;
 
-    public Order(Map<String, Integer> order, Date date) {
+    public Order(Map<String, Integer> order) {
         order.keySet().forEach(Menu::findType);
-        this.date = date;
         this.order = order;
     }
 
@@ -26,10 +24,6 @@ public class Order {
                 .filter(food -> Menu.findType(food) == menu)
                 .mapToInt(amount -> order.get(amount))
                 .sum();
-    }
-
-    public Date getDate() {
-        return date;
     }
 
     @Override

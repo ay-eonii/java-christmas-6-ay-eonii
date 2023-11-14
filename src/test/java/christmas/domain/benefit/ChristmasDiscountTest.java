@@ -1,7 +1,6 @@
 package christmas.domain.benefit;
 
 import christmas.domain.Date;
-import christmas.domain.Order;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,8 +9,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 class ChristmasDiscountTest {
 
@@ -26,11 +23,9 @@ class ChristmasDiscountTest {
     @ParameterizedTest
     @CsvSource(value = {"1:1000", "7:1600", "25:3400", "26:0", "31:0"}, delimiter = ':')
     void calculateBenefit(String input, int expected) {
-        Order order = mock(Order.class);
         Date date = Date.of(input);
-        when(order.getDate()).thenReturn(date);
 
-        int actual = christmasDiscount.calculateBenefit(order);
+        int actual = christmasDiscount.calculateBenefit(date);
 
         assertThat(actual).isEqualTo(expected);
     }

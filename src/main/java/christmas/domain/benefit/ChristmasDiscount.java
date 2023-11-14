@@ -13,6 +13,13 @@ public class ChristmasDiscount extends Discount {
         super(List.of(DayOfWeek.values()));
     }
 
+    public int calculateBenefit(Date date) {
+        if (date.isBeforeChristmas()) {
+            return (date.getDate() - 1) * 100 + 1000;
+        }
+        return 0;
+    }
+
     @Override
     public boolean hasDate(Date date) {
         return super.hasDate(date) && date.isBeforeChristmas();
@@ -20,9 +27,6 @@ public class ChristmasDiscount extends Discount {
 
     @Override
     public int calculateBenefit(Order order) {
-        if (order.getDate().isBeforeChristmas()) {
-            return (order.getDate().getDate() - 1) * 100 + 1000;
-        }
         return 0;
     }
 
