@@ -53,9 +53,6 @@ public class CustomBenefit extends Events {
     }
 
     public int getExpectedPay(Order order) {
-        if (order.hasChampagne()) {
-            return order.getTotalPrice() - getTotalBenefit();
-        }
         int presentationBenefit = customBenefit.get(getPresentation());
         return order.getTotalPrice() - getTotalBenefit() + presentationBenefit;
     }

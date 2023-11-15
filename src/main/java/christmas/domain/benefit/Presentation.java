@@ -11,7 +11,7 @@ public class Presentation extends Discount {
     private static final String NONE = "없음";
     private static final int ZERO = 0;
     private static final int STANDARD = 120_000;
-    public static final String MENU = "샴페인";
+    private static final String MENU = "샴페인";
     private static final int AMOUNT = 1;
     public static final String FORMAT = "%s %d개";
 

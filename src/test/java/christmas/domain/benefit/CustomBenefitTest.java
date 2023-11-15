@@ -76,7 +76,7 @@ class CustomBenefitTest {
         assertThat(actual).isEqualTo(140777);
     }
 
-    @DisplayName("할인 전 총주문 금액이 12만 원 이상이고 샴페인을 주문한 경우 예상 결제 금액에서 샴페인 1개 가격을 제외한다.")
+    @DisplayName("할인 전 총주문 금액이 12만 원 이상이고 샴페인을 주문한 경우 예상 결제 금액에서 제외하지 않는다.")
     @Test
     void getExpectedPayWithoutOneChampagne() {
         Map<String, Integer> menus = new HashMap<>(Map.of("해산물파스타", 2, "레드와인", 1, "샴페인", 2));
@@ -85,7 +85,7 @@ class CustomBenefitTest {
         customBenefit.checkBenefit(order);
         int actual = customBenefit.getExpectedPay(order);
 
-        assertThat(actual).isEqualTo(152800);
+        assertThat(actual).isEqualTo(177800);
     }
 
     @DisplayName("혜택 내역을 출력한다.")
