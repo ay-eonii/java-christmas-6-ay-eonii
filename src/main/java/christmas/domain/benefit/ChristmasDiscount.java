@@ -8,6 +8,8 @@ import java.util.List;
 
 public class ChristmasDiscount extends Discount {
     private static final String NAME = "크리스마스 디데이 할인";
+    private static final int UNIT = 100;
+    private static final int DEFAULT = 1000;
 
     public ChristmasDiscount() {
         super(List.of(DayOfWeek.values()));
@@ -15,9 +17,9 @@ public class ChristmasDiscount extends Discount {
 
     public int calculateBenefit(Date date) {
         if (date.isBeforeChristmas()) {
-            return (date.getDate() - 1) * 100 + 1000;
+            return (date.getDate() - 1) * UNIT + DEFAULT;
         }
-        return 0;
+        return ZERO;
     }
 
     @Override
@@ -27,7 +29,7 @@ public class ChristmasDiscount extends Discount {
 
     @Override
     public int calculateBenefit(Order order) {
-        return 0;
+        return ZERO;
     }
 
     @Override

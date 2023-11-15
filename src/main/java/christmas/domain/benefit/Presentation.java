@@ -9,7 +9,6 @@ import java.util.List;
 public class Presentation extends Discount {
     private static final String NAME = "증정 이벤트";
     private static final String NONE = "없음";
-    private static final int ZERO = 0;
     private static final int STANDARD = 120_000;
     private static final String MENU = "샴페인";
     private static final int AMOUNT = 1;

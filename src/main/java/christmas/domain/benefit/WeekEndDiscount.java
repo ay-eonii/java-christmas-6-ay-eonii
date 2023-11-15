@@ -11,6 +11,7 @@ import static java.time.DayOfWeek.SATURDAY;
 
 public class WeekEndDiscount extends Discount {
     private static final String NAME = "주말 할인";
+    private static final int UNIT = 2023;
 
     public WeekEndDiscount() {
         super(List.of(FRIDAY, SATURDAY));
@@ -23,7 +24,7 @@ public class WeekEndDiscount extends Discount {
 
     @Override
     public int calculateBenefit(Order order) {
-        return order.getAmount(Menu.MAIN) * 2023;
+        return order.getAmount(Menu.MAIN) * UNIT;
     }
 
     @Override

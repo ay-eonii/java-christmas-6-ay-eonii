@@ -8,8 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static christmas.domain.benefit.Event.ZERO;
+
 public class CustomBenefit extends Events {
-    private static final int ZERO = 0;
     private static final String FORMAT = "%s: -%s원\n";
     private static final String NONE = "없음\n";
     private final Map<Event, Integer> customBenefit;
@@ -64,7 +65,7 @@ public class CustomBenefit extends Events {
         }
         return customBenefit.entrySet()
                 .stream()
-                .filter(benefit -> benefit.getValue() != 0)
+                .filter(benefit -> benefit.getValue() != ZERO)
                 .map(benefit -> String.format(FORMAT, benefit.getKey().getName(), decimalFormat.format(benefit.getValue())))
                 .collect(Collectors.joining());
     }

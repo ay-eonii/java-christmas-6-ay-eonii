@@ -11,6 +11,8 @@ import java.util.Map;
 public class InputView {
     private static final String INPUT_DATE = "12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)";
     private static final String INPUT_MENU = "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)";
+    private static final String COMMA_SYMBOL = ",";
+    private static final String HYPHEN_SYMBOL = "-";
 
     public Date readDate() {
         System.out.println(INPUT_DATE);
@@ -32,7 +34,7 @@ public class InputView {
     }
 
     private Order readMenuByUser() {
-        String[] orders = getWithoutSpace().split(",");
+        String[] orders = getWithoutSpace().split(COMMA_SYMBOL);
         try {
             Map<String, Integer> menus = createMenuMap(orders);
             validateDuplication(orders, menus);
@@ -47,7 +49,7 @@ public class InputView {
         Map<String, Integer> menu = new HashMap<>();
         for (String order : orders) {
             validateFormat(order);
-            String[] splitWithHyphen = order.split("-");
+            String[] splitWithHyphen = order.split(HYPHEN_SYMBOL);
             menu.put(splitWithHyphen[0], Integer.parseInt(splitWithHyphen[1]));
         }
         return menu;

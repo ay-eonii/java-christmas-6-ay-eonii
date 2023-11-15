@@ -9,6 +9,7 @@ import static java.time.DayOfWeek.SUNDAY;
 
 public class SpecialDiscount extends Discount {
     private static final String NAME = "특별 할인";
+    private static final int DEFAULT = 1000;
 
     public SpecialDiscount() {
         super(List.of(SUNDAY));
@@ -21,7 +22,7 @@ public class SpecialDiscount extends Discount {
 
     @Override
     public int calculateBenefit(Order order) {
-        return 1000;
+        return DEFAULT;
     }
 
     @Override

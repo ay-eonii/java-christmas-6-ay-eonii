@@ -7,7 +7,10 @@ import java.time.LocalDate;
 import java.time.Month;
 
 public class Date {
+    private static final int START_DAY = 1;
+    private static final int END_DAY = 31;
     private static final int CHRISTMAS_DAY = 25;
+    private static final int YEAR = 2023;
     private final int date;
 
     private Date(int date) {
@@ -17,11 +20,15 @@ public class Date {
     public static Date of(String input) {
         try {
             int date = Integer.parseInt(input);
-            if (date < 1 || date > 31) {
-                throw new CustomInvalidDateException();
-            }
+            validateDate(date);
             return new Date(date);
         } catch (NumberFormatException e) {
+            throw new CustomInvalidDateException();
+        }
+    }
+
+    private static void validateDate(int date) {
+        if (date < START_DAY || date > END_DAY) {
             throw new CustomInvalidDateException();
         }
     }
@@ -39,7 +46,7 @@ public class Date {
     }
 
     public DayOfWeek getDayOfWeek() {
-        return LocalDate.of(2023, Month.DECEMBER, date).getDayOfWeek();
+        return LocalDate.of(YEAR, Month.DECEMBER, date).getDayOfWeek();
     }
 
     @Override

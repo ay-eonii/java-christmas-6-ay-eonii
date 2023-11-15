@@ -10,6 +10,7 @@ import static java.time.DayOfWeek.*;
 
 public class WeekDayDiscount extends Discount {
     private static final String NAME = "평일 할인";
+    private static final int UNIT = 2023;
 
     public WeekDayDiscount() {
         super(List.of(SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY));
@@ -23,7 +24,7 @@ public class WeekDayDiscount extends Discount {
     @Override
     public int calculateBenefit(Order order) {
         int amount = order.getAmount(Menu.DESSERT);
-        return amount * 2023;
+        return amount * UNIT;
     }
 
     @Override
