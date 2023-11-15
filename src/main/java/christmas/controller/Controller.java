@@ -13,16 +13,23 @@ public class Controller {
 
     public void start() {
         outputView.printWelcome();
+        final Date date = inputView.readDate();
+        final Order order = inputView.readMenu();
+        displayOrder(date, order);
 
-        Date date = inputView.readDate();
-        Order order = inputView.readMenu();
+        final CustomBenefit customBenefit = new CustomBenefit(date);
+        displayCustomBenefit(order, customBenefit);
+    }
+
+    private void displayOrder(Date date, Order order) {
         outputView.printPreview(date);
         outputView.printOrder(order.toString());
         outputView.printTotalPrice(order.getTotalPrice());
+    }
 
-        final CustomBenefit customBenefit = new CustomBenefit(date);
-        outputView.printPresentation(customBenefit.getPresentation(order));
+    private void displayCustomBenefit(Order order, CustomBenefit customBenefit) {
         customBenefit.checkBenefit(order);
+        outputView.printPresentation(customBenefit.getPresentation(order));
         outputView.printBenefit(customBenefit.toString());
         outputView.printTotalBenefit(customBenefit.getTotalBenefit());
         outputView.printExpectedPay(customBenefit.getExpectedPay(order));
