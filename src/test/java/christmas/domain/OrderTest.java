@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class OrderTest {
 
@@ -19,6 +22,18 @@ class OrderTest {
     void setUp() {
         Map<String, Integer> menus = new HashMap<>(Map.of("해산물파스타", 2, "레드와인", 1, "초코케이크", 1));
         order = new Order(menus);
+    }
+
+    @DisplayName("최소 금액 이하인지 확인한다.")
+    @Test
+    void isUnderMinPrice() {
+        Order order = mock(Order.class);
+        when(order.getTotalPrice()).thenReturn(9999);
+        when(order.isUnderMinPrice()).thenCallRealMethod();
+
+        boolean actual = order.isUnderMinPrice();
+
+        Assertions.assertThat(actual).isTrue();
     }
 
     @DisplayName("할인 전 총주문 금액을 계산한다.")

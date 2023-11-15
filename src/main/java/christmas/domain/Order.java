@@ -6,6 +6,7 @@ import christmas.exception.CustomInvalidMenuException;
 import java.util.Map;
 
 public class Order {
+    private static final int MIN_PRICE = 10_000;
     private static final int MAX_ORDER = 20;
     private static final String FORMAT = "%s %d개\n";
     private Map<String, Integer> order;
@@ -35,6 +36,10 @@ public class Order {
         if (orderCount > MAX_ORDER) {
             throw new CustomInvalidMenuException();
         }
+    }
+
+    public boolean isUnderMinPrice() {
+        return getTotalPrice() < MIN_PRICE;
     }
 
     public int getTotalPrice() {

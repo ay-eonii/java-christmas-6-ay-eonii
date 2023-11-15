@@ -42,7 +42,7 @@ class CustomBenefitTest {
     @Test
     void checkBenefitWithUnderMinPrice() {
         Order order = mock(Order.class);
-        when(order.getTotalPrice()).thenReturn(9999);
+        when(order.isUnderMinPrice()).thenReturn(true);
 
         customBenefit.checkBenefit(order);
 
