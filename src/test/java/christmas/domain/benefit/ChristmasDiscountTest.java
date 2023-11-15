@@ -50,6 +50,7 @@ class ChristmasDiscountTest {
         assertThat(actual).isFalse();
     }
 
+    @DisplayName("혜택 이름을 가져온다.")
     @Test
     void getName() {
         String actual = christmasDiscount.getName();

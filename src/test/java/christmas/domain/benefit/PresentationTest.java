@@ -80,6 +80,7 @@ class PresentationTest {
         assertThat(actual).isEqualTo(0);
     }
 
+    @DisplayName("혜택 이름을 가져온다.")
     @Test
     void getName() {
         String actual = presentation.getName();

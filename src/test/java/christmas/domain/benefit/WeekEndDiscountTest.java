@@ -56,6 +56,7 @@ class WeekEndDiscountTest {
         assertThat(actual).isEqualTo(benefit);
     }
 
+    @DisplayName("혜택 이름을 가져온다.")
     @Test
     void getName() {
         String actual = weekEndDiscount.getName();
