@@ -39,7 +39,7 @@ public class InputView {
         try {
             Map<String, Integer> menus = createMenuMap(orders);
             validateDuplication(orders, menus);
-            return new Order(menus);
+            return Order.from(menus);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readMenuByUser();

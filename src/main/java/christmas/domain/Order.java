@@ -8,14 +8,18 @@ public class Order {
     private static final int MIN_PRICE = 10_000;
     private static final int MAX_ORDER = 20;
     private static final String FORMAT = "%s %d개\n";
-    private Map<String, Integer> order;
+    private final Map<String, Integer> order;
 
-    public Order(Map<String, Integer> order) {
-        validateOrder(order);
+    private Order(Map<String, Integer> order) {
         this.order = order;
     }
 
-    private void validateOrder(Map<String, Integer> order) {
+    public static Order from(Map<String, Integer> input) {
+        validateOrder(input);
+        return new Order(input);
+    }
+
+    private static void validateOrder(Map<String, Integer> order) {
         long drinkCount = getDrinkCount(order);
         if (drinkCount == order.size()) {
             throw new CustomInvalidMenuException();
@@ -23,15 +27,17 @@ public class Order {
         validateMax(order);
     }
 
-    private long getDrinkCount(Map<String, Integer> order) {
+    private static long getDrinkCount(Map<String, Integer> order) {
         return order.keySet().stream()
                 .map(Menu::findType)
                 .filter(menu -> menu == Menu.DRINK)
                 .count();
     }
 
-    private void validateMax(Map<String, Integer> order) {
-        int orderCount = order.values().stream().mapToInt(Integer::intValue).sum();
+    private static void validateMax(Map<String, Integer> order) {
+        int orderCount = order.values().stream()
+                .mapToInt(Integer::intValue)
+                .sum();
         if (orderCount > MAX_ORDER) {
             throw new CustomInvalidMenuException();
         }
