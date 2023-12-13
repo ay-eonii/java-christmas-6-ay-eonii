@@ -50,8 +50,8 @@ class PresentationTest {
     @ParameterizedTest
     @ValueSource(strings = {"1", "15", "25", "31"})
     void hasDate(String input) {
-        Date date = Date.of(input);
-        boolean actual = presentation.hasDate(date);
+        Date.from(input);
+        boolean actual = presentation.hasDate();
 
         assertThat(actual).isTrue();
     }

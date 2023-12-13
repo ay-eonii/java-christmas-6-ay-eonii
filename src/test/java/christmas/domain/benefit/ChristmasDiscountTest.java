@@ -16,15 +16,16 @@ class ChristmasDiscountTest {
 
     @BeforeEach
     void setUp() {
-        christmasDiscount = new ChristmasDiscount();
+//        christmasDiscount = ChristmasDiscount.from();
     }
 
     @DisplayName("방문 날짜로 크리스마스 디데이 할인 금액을 계산한다.")
     @ParameterizedTest
     @CsvSource(value = {"1:1000", "7:1600", "25:3400", "26:0", "31:0"}, delimiter = ':')
     void calculateBenefit(String input, int expected) {
-        Date date = Date.of(input);
+        Date date = Date.from(input);
 
+        christmasDiscount = new ChristmasDiscount();
         int actual = christmasDiscount.calculateBenefit(date);
 
         assertThat(actual).isEqualTo(expected);
@@ -34,8 +35,9 @@ class ChristmasDiscountTest {
     @ParameterizedTest
     @ValueSource(strings = {"1", "15", "25"})
     void hasDate(String input) {
-        Date date = Date.of(input);
-        boolean actual = christmasDiscount.hasDate(date);
+        Date.from(input);
+        christmasDiscount = new ChristmasDiscount();
+        boolean actual = christmasDiscount.hasDate();
 
         assertThat(actual).isTrue();
     }
@@ -44,8 +46,10 @@ class ChristmasDiscountTest {
     @ParameterizedTest
     @ValueSource(strings = {"26", "31"})
     void hasNotDate(String input) {
-        Date date = Date.of(input);
-        boolean actual = christmasDiscount.hasDate(date);
+        Date.from(input);
+        christmasDiscount = new ChristmasDiscount();
+
+        boolean actual = christmasDiscount.hasDate();
 
         assertThat(actual).isFalse();
     }
@@ -53,6 +57,8 @@ class ChristmasDiscountTest {
     @DisplayName("혜택 이름을 가져온다.")
     @Test
     void getName() {
+        christmasDiscount = new ChristmasDiscount();
+
         String actual = christmasDiscount.getName();
 
         assertThat(actual).isEqualTo("크리스마스 디데이 할인");

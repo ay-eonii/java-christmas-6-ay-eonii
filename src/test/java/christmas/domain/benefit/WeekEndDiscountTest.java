@@ -20,15 +20,17 @@ class WeekEndDiscountTest {
 
     @BeforeEach
     void setUp() {
-        weekEndDiscount = new WeekEndDiscount();
+//        weekEndDiscount = new WeekEndDiscount();
     }
 
     @DisplayName("금,토에 주말 할인을 진행한다.")
     @ParameterizedTest
     @ValueSource(strings = {"1", "2", "8", "9", "15", "16", "22", "23", "29", "30"})
     void hasDate(String input) {
-        Date date = Date.of(input);
-        boolean actual = weekEndDiscount.hasDate(date);
+        Date.from(input);
+
+        weekEndDiscount = new WeekEndDiscount();
+        boolean actual = weekEndDiscount.hasDate();
 
         assertThat(actual).isTrue();
     }
@@ -37,8 +39,10 @@ class WeekEndDiscountTest {
     @ParameterizedTest
     @ValueSource(strings = {"3", "4", "5", "6", "7", "10", "11", "12", "13", "14", "17", "18", "19", "20", "21", "24", "25", "26", "27", "28", "31"})
     void hasNotDate(String input) {
-        Date date = Date.of(input);
-        boolean actual = weekEndDiscount.hasDate(date);
+        Date.from(input);
+
+        weekEndDiscount = new WeekEndDiscount();
+        boolean actual = weekEndDiscount.hasDate();
 
         assertThat(actual).isFalse();
     }
@@ -51,6 +55,7 @@ class WeekEndDiscountTest {
         Menu main = Menu.MAIN;
 
         when(order.getAmount(main)).thenReturn(amount);
+        weekEndDiscount = new WeekEndDiscount();
         int actual = weekEndDiscount.calculateBenefit(order);
 
         assertThat(actual).isEqualTo(benefit);
@@ -59,6 +64,7 @@ class WeekEndDiscountTest {
     @DisplayName("혜택 이름을 가져온다.")
     @Test
     void getName() {
+        weekEndDiscount = new WeekEndDiscount();
         String actual = weekEndDiscount.getName();
 
         assertThat(actual).isEqualTo("주말 할인");

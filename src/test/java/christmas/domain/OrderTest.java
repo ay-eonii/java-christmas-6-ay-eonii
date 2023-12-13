@@ -21,7 +21,7 @@ class OrderTest {
     @BeforeEach
     void setUp() {
         Map<String, Integer> menus = new HashMap<>(Map.of("해산물파스타", 2, "레드와인", 1, "초코케이크", 1));
-        order = new Order(menus);
+        order = Order.from(menus);
     }
 
     @DisplayName("최소 금액 이하인지 확인한다.")

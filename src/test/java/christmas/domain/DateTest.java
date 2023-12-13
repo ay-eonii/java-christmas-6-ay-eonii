@@ -16,7 +16,7 @@ class DateTest {
     @ValueSource(strings = {"0", "32", "1a"})
     void of(String input) {
         assertThatExceptionOfType(CustomInvalidDateException.class)
-                .isThrownBy(() -> Date.of(input))
+                .isThrownBy(() -> Date.from(input))
                 .withMessageMatching(".*\\[ERROR\\] 유효하지 않은 날짜입니다\\. 다시 입력해 주세요\\..*");
     }
 
@@ -24,7 +24,7 @@ class DateTest {
     @ParameterizedTest
     @ValueSource(strings = {"1", "15", "25"})
     void isBeforeChristmas(String input) {
-        Date date = Date.of(input);
+        Date date = Date.from(input);
         boolean actual = date.isBeforeChristmas();
 
         assertThat(actual).isTrue();
@@ -34,7 +34,7 @@ class DateTest {
     @ParameterizedTest
     @ValueSource(strings = {"26", "31"})
     void isAfterChristmas(String input) {
-        Date date = Date.of(input);
+        Date date = Date.from(input);
         boolean actual = date.isBeforeChristmas();
 
         assertThat(actual).isFalse();
@@ -43,7 +43,7 @@ class DateTest {
     @DisplayName("크리스마스인지 확인한다.")
     @Test
     void isChristmas() {
-        Date date = Date.of("25");
+        Date date = Date.from("25");
         boolean actual = date.isChristmas();
 
         assertThat(actual).isTrue();
@@ -53,7 +53,7 @@ class DateTest {
     @ParameterizedTest
     @ValueSource(strings = {"26", "31"})
     void isNotChristmas(String input) {
-        Date date = Date.of(input);
+        Date date = Date.from(input);
         boolean actual = date.isChristmas();
 
         assertThat(actual).isFalse();

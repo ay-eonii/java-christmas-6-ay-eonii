@@ -19,9 +19,9 @@ class CustomBenefitTest {
 
     @BeforeEach
     void setUp() {
-        customBenefit = new CustomBenefit(Date.of("3"));
+        customBenefit = new CustomBenefit(Date.from("3"));
         Map<String, Integer> menus = new HashMap<>(Map.of("해산물파스타", 2, "레드와인", 1, "초코케이크", 1));
-        order = new Order(menus);
+        order = Order.from(menus);
     }
 
     @DisplayName("혜택을 계산한다.")
@@ -80,7 +80,7 @@ class CustomBenefitTest {
     @Test
     void getExpectedPayWithoutOneChampagne() {
         Map<String, Integer> menus = new HashMap<>(Map.of("해산물파스타", 2, "레드와인", 1, "샴페인", 2));
-        order = new Order(menus);
+        order = Order.from(menus);
 
         customBenefit.checkBenefit(order);
         int actual = customBenefit.getExpectedPay(order);
