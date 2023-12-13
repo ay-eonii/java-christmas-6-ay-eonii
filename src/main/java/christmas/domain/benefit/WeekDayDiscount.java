@@ -1,6 +1,5 @@
 package christmas.domain.benefit;
 
-import christmas.domain.Date;
 import christmas.domain.Menu;
 import christmas.domain.Order;
 
@@ -17,8 +16,8 @@ public class WeekDayDiscount extends Discount {
     }
 
     @Override
-    public boolean hasDate(Date date) {
-        return super.hasDate(date);
+    public boolean hasDate() {
+        return super.hasDate();
     }
 
     @Override

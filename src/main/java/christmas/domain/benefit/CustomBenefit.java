@@ -19,13 +19,13 @@ public class CustomBenefit extends Events {
 
     public CustomBenefit(Date date) {
         this.date = date;
-        this.customBenefit = initCustomBenefit(date);
+        this.customBenefit = initCustomBenefit();
     }
 
-    private Map<Event, Integer> initCustomBenefit(Date date) {
+    private Map<Event, Integer> initCustomBenefit() {
         Map<Event, Integer> customBenefit = new HashMap<>();
         getEvents().forEach((name, event) -> {
-            if (event.hasDate(date)) {
+            if (event.hasDate()) {
                 customBenefit.put(event, ZERO);
             }
         });

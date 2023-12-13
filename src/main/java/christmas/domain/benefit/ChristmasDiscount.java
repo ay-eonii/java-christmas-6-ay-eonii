@@ -23,8 +23,8 @@ public class ChristmasDiscount extends Discount {
     }
 
     @Override
-    public boolean hasDate(Date date) {
-        return super.hasDate(date) && date.isBeforeChristmas();
+    public boolean hasDate() {
+        return super.hasDate() && date.isBeforeChristmas();
     }
 
     @Override

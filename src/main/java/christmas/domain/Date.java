@@ -12,19 +12,26 @@ public class Date {
     private static final int CHRISTMAS_DAY = 25;
     private static final int YEAR = 2023;
     private final int date;
+    private static Date instance;
 
     private Date(int date) {
         this.date = date;
     }
 
-    public static Date of(String input) {
+    public static Date from(String input) {
         try {
             int date = Integer.parseInt(input);
             validateDate(date);
-            return new Date(date);
+            instance = new Date(date);
+            return instance;
         } catch (NumberFormatException e) {
             throw new CustomInvalidDateException();
         }
+    }
+
+    public static Date getInstance() {
+        assert (instance != null);
+        return instance;
     }
 
     private static void validateDate(int date) {

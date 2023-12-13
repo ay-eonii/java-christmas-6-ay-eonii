@@ -21,7 +21,8 @@ public class InputView {
 
     private Date readDateByUser() {
         try {
-            return Date.of(getWithoutSpace());
+            String input = getWithoutSpace();
+            return Date.from(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readDateByUser();

@@ -1,6 +1,5 @@
 package christmas.domain.benefit;
 
-import christmas.domain.Date;
 import christmas.domain.Order;
 
 import java.util.List;
@@ -16,8 +15,8 @@ public class SpecialDiscount extends Discount {
     }
 
     @Override
-    public boolean hasDate(Date date) {
-        return super.hasDate(date) || date.isChristmas();
+    public boolean hasDate() {
+        return super.hasDate() || date.isChristmas();
     }
 
     @Override
